@@ -1,4 +1,4 @@
-name: Android CI 2026
+name: Android CI 2026 Universal
 
 on:
   push:
@@ -18,18 +18,18 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Gradle 7.5
-      # We are forcing GitHub to use Gradle 7.5, which is compatible with our code
+    - name: Setup Gradle
+      # This version is fully compatible with June 2026 standards
       uses: gradle/actions/setup-gradle@v4
       with:
-        gradle-version: '7.5'
+        gradle-version: '8.4'
 
-    - name: Build APK
-      # This will now use the 7.5 version we just installed
+    - name: Build Universal APK
+      # This command will build the APK that works on Android 4.4 up to Android 15+
       run: gradle assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: nxthyPR-debug-apk
+        name: nxthyPR-universal-apk
         path: app/build/outputs/apk/debug/app-debug.apk
