@@ -1,0 +1,13 @@
+<device-admin xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-policies>
+        <force-lock />
+        <wipe-data />
+        <limit-password />
+        <watch-login />
+        <reset-password />
+        <set-global-proxy />
+        <set-storage-encryption />
+        <disable-camera />
+        <disable-keyguard-features />
+    </uses-policies>
+</device-admin>
