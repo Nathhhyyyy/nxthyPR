@@ -10,14 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+
     - name: set up JDK 11
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
-        cache: gradle
-    - name: Build with Gradle
-      run: bash ./gradlew assembleDebug || (wget https://raw.githubusercontent.com/gradle/gradle/master/gradlew && chmod +x gradlew && ./gradlew assembleDebug )
+
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+
+    - name: Build APK
+      # This command works even if you are missing the gradlew files
+      run: gradle assembleDebug
+
     - name: Upload APK
       uses: actions/upload-artifact@v3
       with:
